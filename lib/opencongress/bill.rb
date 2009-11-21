@@ -3,14 +3,18 @@ module OpenCongress
   
   class OCBill < OpenCongressObject
     
-    attr_accessor :bill_type, :id, :introduced, :last_speech, :last_vote_date, :last_vote_roll, :last_vote_where, :last_action, :number, :plain_language_summary,
-                  :session, :sponsor, :co_sponsors, :title_full_common, :status, :most_recent_actions, :bill_titles, :recent_blogs, :recent_news, :ident
+    attr_accessor :bill_type, :bill_type_human, :id, :introduced, :last_speech, :last_vote_date, :last_vote_roll,
+                  :last_vote_where, :last_action, :number, :plain_language_summary,
+                  :session, :sponsor, :co_sponsors, :title_full_common, :status,
+                  :most_recent_actions, :bill_titles, :recent_blogs, :recent_news, :ident,
+                  :title
     
     
     def initialize(params)
       params.each do |key, value|
         instance_variable_set("@#{key}", value) if OCBill.instance_methods.include? key
-      end      
+      end
+      @bill_type_human, @title = title_full_common.split(' ', 2)
     end
     
     def ident
@@ -18,7 +22,6 @@ module OpenCongress
     end
     
     def self.all_where(params)
-
       url = construct_url("bills", params)
       
       if (result = make_call(url))
@@ -26,7 +29,6 @@ module OpenCongress
       else
         nil
       end
-
     end
     
     def self.most_blogged_bills_this_week

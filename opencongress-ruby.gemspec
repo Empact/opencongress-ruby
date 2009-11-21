@@ -31,8 +31,8 @@ Gem::Specification.new do |s|
      "lib/opencongress/voting_comparison.rb",
      "lib/opencongress_ruby.rb",
      "opencongress-ruby.gemspec",
-     "test/opencongress_ruby_test.rb",
-     "test/test_helper.rb"
+     "spec/open_congress/bill_spec.rb",
+     "spec/spec_helper.rb"
   ]
   s.homepage = %q{http://github.com/opencongress/opencongress-ruby}
   s.rdoc_options = ["--charset=UTF-8"]
@@ -40,8 +40,8 @@ Gem::Specification.new do |s|
   s.rubygems_version = %q{1.3.5}
   s.summary = %q{OpenCongress API ruby binding}
   s.test_files = [
-    "test/opencongress_ruby_test.rb",
-     "test/test_helper.rb"
+    "spec/open_congress/bill_spec.rb",
+     "spec/spec_helper.rb"
   ]
 
   if s.respond_to? :specification_version then
