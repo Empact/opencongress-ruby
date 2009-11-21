@@ -6,17 +6,16 @@ require 'json'
 module OpenCongress
   OC_BASE = "http://www.opencongress.org/"
   API_URL = "#{OC_BASE}api/"
-  
-  attr_accessor :api_key
+  API_KEY = ENV['OPEN_CONGRESS_API_KEY']
   
   class OpenCongressObject
     
     def self.construct_url(api_method, params)
       url = nil
-      if OpenCongress.api_key == nil || OpenCongress.api_key == ''
+      if API_KEY == nil || API_KEY == ''
         raise "Failed to provide OpenCongress API Key"
       else
-        url = "#{API_URL}#{api_method}?key=#{OpenCongress.api_key}#{hash2get(params)}&format=json"
+        url = "#{API_URL}#{api_method}?key=#{API_KEY}#{hash2get(params)}&format=json"
       end
       return url
     end
