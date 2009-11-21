@@ -2,6 +2,7 @@ require 'rubygems'
 require 'hpricot'
 require 'open-uri'
 require 'json'
+require 'cgi'
 
 module OpenCongress
   OC_BASE = "http://www.opencongress.org/"
