@@ -12,6 +12,13 @@ describe OpenCongress::OCBill do
     end
   end
 
+  describe ".by_idents" do
+    it "should return an array of related bills" do
+      bills = OpenCongress::OCBill.by_idents(["111-h3548"])
+      bills.first.title.should == "Worker, Homeownership, and Business Assistance Act of 2009"
+    end
+  end
+
   describe "#title_full_common" do
     it "should be present" do
       @bill.title_full_common.should_not be_empty
