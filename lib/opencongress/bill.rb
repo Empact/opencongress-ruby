@@ -83,7 +83,7 @@ module OpenCongress
       url = OCBill.construct_url("bills_by_query", {:q => q})
       
       if (result = make_call(url))
-        bills = parse_results(result)
+        bills = parse_results(result['bills'])
       else
         nil
       end
