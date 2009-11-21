@@ -21,4 +21,10 @@ describe OpenCongress::OCBill do
       @bill.title_full_common.should == [@bill.bill_type_human, @bill.title].join(' ')
     end
   end
+
+  describe "#url" do
+    it "should point to the bill show page on opencongress" do
+      @bill.url.should =~ %r{^http://www\.opencongress\.org/bill/.*/show}
+    end
+  end
 end
