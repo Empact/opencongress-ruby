@@ -133,49 +133,23 @@ module OpenCongress
     end
 
     def self.parse_results(result)
+      (result['bills'] || []).map do |bill|
 
-      bills = []
-      (result['bills'] || []).each do |bill|
-
-        these_recent_blogs = bill["recent_blogs"]
-        blogs = []
-
-        if these_recent_blogs
-          these_recent_blogs.each do |trb|
-            blogs << OCBlogPost.new(trb)
-          end
+        bill["recent_blogs"] = (bill["recent_blogs"] || []).map do |trb|
+          OCBlogPost.new(trb)
         end
 
-        bill["recent_blogs"] = blogs
-
-
-        these_recent_news = bill["recent_news"]
-        news = []
-        if these_recent_news
-          these_recent_news.each do |trb|
-            news << OCNewsPost.new(trb)
-          end
+        bill["recent_news"] = (bill["recent_news"] || []).map do |trb|
+          OCNewsPost.new(trb)
         end
-
-        bill["recent_news"] = news
-
-        these_co_sponsors = bill["co_sponsors"]
-        co_sponsors = []
-        if these_co_sponsors
-          these_co_sponsors.each do |tcs|
-            co_sponsors << OCPerson.new(tcs)
-          end
+        bill["co_sponsors"] = (bill["co_sponsors"] || []).map do |tcs|
+          OCPerson.new(tcs)
         end
-
-        bill["co_sponsors"] = co_sponsors
-
 
         bill["sponsor"] = OCPerson.new(bill["sponsor"]) if bill["sponsor"]
 
-
-        bills << OCBill.new(bill)
+        OCBill.new(bill)
       end
-      bills
     end
 
 
