@@ -135,7 +135,7 @@ module OpenCongress
     def self.parse_results(result)
 
       bills = []
-      result['bills'].each do |bill|
+      (result['bills'] || []).each do |bill|
 
         these_recent_blogs = bill["recent_blogs"]
         blogs = []

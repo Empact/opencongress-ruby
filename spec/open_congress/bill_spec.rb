@@ -6,9 +6,16 @@ describe OpenCongress::OCBill do
   end
 
   describe ".by_query" do
-    it "should return an array of related bills" do
-      bills = OpenCongress::OCBill.by_query('patriot act')
-      bills.should be_an_instance_of(Array)
+    context "when there are no matches" do
+      it "should return an empty array" do
+        OpenCongress::OCBill.by_query('smelly roses').should == []
+      end
+    end
+    context "when there are matches" do
+      it "should return an array of related bills" do
+        bills = OpenCongress::OCBill.by_query('patriot act')
+        bills.should be_an_instance_of(Array)
+      end
     end
   end
 
