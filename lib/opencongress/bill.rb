@@ -29,59 +29,42 @@ module OpenCongress
       url = construct_url("bills", params)
 
       if (result = make_call(url))
-        bills = parse_results(result)
-      else
-        nil
+        parse_results(result)
       end
     end
 
     def self.most_blogged_bills_this_week
       url = construct_url("most_blogged_bills_this_week", {})
       if (result = make_call(url))
-        bills = parse_results(result)
-        return bills
-      else
-        nil
+        parse_results(result)
       end
     end
 
     def self.bills_in_the_news_this_week
       url = construct_url("bills_in_the_news_this_week", {})
       if (result = make_call(url))
-        bills = parse_results(result)
-        return bills
-      else
-        nil
+        parse_results(result)
       end
     end
 
     def self.most_tracked_bills_this_week
       url = construct_url("most_tracked_bills_this_week", {})
       if (result = make_call(url))
-        bills = parse_results(result)
-        return bills
-      else
-        nil
+        parse_results(result)
       end
     end
 
     def self.most_supported_bills_this_week
       url = construct_url("most_supported_bills_this_week", {})
       if (result = make_call(url))
-        bills = parse_results(result)
-        return bills
-      else
-        nil
+        parse_results(result)
       end
     end
 
     def self.most_opposed_bills_this_week
       url = construct_url("most_opposed_bills_this_week", {})
       if (result = make_call(url))
-        bills = parse_results(result)
-        return bills
-      else
-        nil
+        parse_results(result)
       end
     end
 
@@ -89,9 +72,7 @@ module OpenCongress
       url = OCBill.construct_url("bills_by_query", {:q => q})
 
       if (result = make_call(url))
-        bills = parse_results(result)
-      else
-        nil
+        parse_results(result)
       end
     end
 
@@ -106,29 +87,21 @@ module OpenCongress
       url = OCBill.construct_url("bills_by_ident", {:ident => q.join(',')})
 
       if (result = make_call(url))
-        bills = parse_results(result)
-      else
-        nil
+        parse_results(result)
       end
     end
 
     def opencongress_users_supporting_bill_are_also
       url = OCBill.construct_url("opencongress_users_supporting_bill_are_also/#{ident}", {})
       if (result = OCBill.make_call(url))
-        bills = OCBill.parse_supporting_results(result)
-        return bills
-      else
-        nil
+        OCBill.parse_supporting_results(result)
       end
     end
 
     def opencongress_users_opposing_bill_are_also
       url = OCBill.construct_url("opencongress_users_opposing_bill_are_also/#{ident}", {})
       if (result = OCBill.make_call(url))
-        bills = OCBill.parse_supporting_results(result)
-        return bills
-      else
-        nil
+        OCBill.parse_supporting_results(result)
       end
     end
 
